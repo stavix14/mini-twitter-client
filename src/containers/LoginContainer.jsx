@@ -20,13 +20,11 @@ class LoginContainer extends React.Component {
         const isEmailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/i;
         const companyEmail = "@optioffer.com";
         if (!isEmailRegex.test(email)) {
-            console.log("merge");
             errors = "Invalid email address!";
         }
         else if (email.slice(-14) !== companyEmail) {
             errors = "This email address does not belong to our company!";
         }
-
         return errors;
     }
 
