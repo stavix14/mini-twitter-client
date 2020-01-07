@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Button, TextField } from '@material-ui/core';
 
 class LoginContainer extends React.Component {
@@ -37,7 +38,7 @@ class LoginContainer extends React.Component {
         return (
             <div>
                 <TextField
-                    autoComplete={false}
+                    autoComplete="off"
                     autoFocus={true}
                     error={!!errors}
                     helperText={errors}
@@ -47,10 +48,14 @@ class LoginContainer extends React.Component {
                     value={email}
                     onChange={this.onChange}
                 />
-                <Button primary onClick={this.onSubmit}>Login</Button>
+                <Button onClick={this.onSubmit}>Login</Button>
             </div>
         );
     }
+}
+
+LoginContainer.propTypes = {
+    submit: PropTypes.func.isRequired
 }
 
 export default LoginContainer;

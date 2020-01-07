@@ -1,8 +1,9 @@
 import React from 'react';
+import TweetInputContainer from "../containers/TweetInputContainer";
 
 const DashboardPage = () => (
     <div>
-        <h1>Dashboard</h1>
+        <TweetInputContainer />
     </div>
 );
 
