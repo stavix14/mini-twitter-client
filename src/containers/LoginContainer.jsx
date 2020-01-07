@@ -13,12 +13,16 @@ class LoginContainer extends React.Component {
     onSubmit = () => {
         const errors = this.validate(this.state.email);
         this.setState({ errors });
+        if (!errors) {
+            this.props.submit();
+        }
     }
 
     validate = (email) => {
-        let errors = '';
         const isEmailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/i;
         const companyEmail = "@optioffer.com";
+        let errors = '';
+
         if (!isEmailRegex.test(email)) {
             errors = "Invalid email address!";
         }

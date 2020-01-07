@@ -1,10 +1,18 @@
 import React from 'react';
 import LoginContainer from "../containers/LoginContainer";
 
-const LoginPage = () => (
-    <div>
-        <LoginContainer />
-    </div>
-);
+class LoginPage extends React.Component {
+
+    submit = () =>
+        this.props.history.push("/dashboard");
+
+    render() {
+        return (
+            <div>
+                <LoginContainer submit={this.submit} />
+            </div>
+        );
+    }
+};
 
 export default LoginPage;
