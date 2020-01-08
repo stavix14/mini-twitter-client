@@ -15,7 +15,7 @@ class LoginContainer extends React.Component {
         const errors = this.validate(this.state.email);
         this.setState({ errors });
         if (!errors) {
-            this.props.submit();
+            this.props.submit(this.state.email);
         }
     }
 

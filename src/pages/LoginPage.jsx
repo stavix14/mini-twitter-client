@@ -3,8 +3,13 @@ import LoginContainer from "../containers/LoginContainer";
 
 class LoginPage extends React.Component {
 
-    submit = () =>
-        this.props.history.push("/dashboard");
+    submit = email =>
+        this.props.history.push({
+            pathname: "/dashboard",
+            state: {
+                username: email
+            }
+        });
 
     render() {
         return (

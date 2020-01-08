@@ -11,8 +11,14 @@ class TweetInputContainer extends React.Component {
 
     onSubmit = () => {
         const errors = this.validate(this.state.text);
+        const postingTime = new Date();
+        console.log(postingTime.toJSON());
+
         this.setState({ errors });
-        console.log(this.state.text);
+        if (!errors) {
+            this.props.submit({ variables: { username: this.props.username, message: this.state.text, date: postingTime } });
+        }
+        //clear the text area after
     }
 
     validate = (text) => {
