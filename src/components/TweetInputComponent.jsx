@@ -2,11 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { Button, TextField } from '@material-ui/core';
+import { deepPurple } from '@material-ui/core/colors';
 
 const styles = {
-    tweetComponent: {
-        marginLeft: '25%',
-        marginRight: '25%',
+    wrapper: {
+        textAlign: 'center',
+        marginTop: '2em',
+        marginBottom: '5em'
     },
     tweetTextField: {
         width: '50%',
@@ -18,15 +20,17 @@ const styles = {
     helperDiv: {
         display: 'block',
         marginTop: '1em',
-        float: 'right'
-
+        position: 'relative',
+        left: '20%'
     },
     tweetButton: {
-        background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
+        background: deepPurple[500],
+        color: 'white',
         display: 'inline',
     },
     chCounter: {
-        display: 'inline'
+        display: 'inline',
+        marginRight: '1em'
     }
 };
 
@@ -34,7 +38,7 @@ const TweetInputComponent = props => {
     const { classes, counter } = props;
 
     return(
-        <div className={classes.tweetComponent}>
+        <div className={classes.wrapper}>
             <TextField
                 id="outlined-basic"
                 className={classes.tweetTextField}

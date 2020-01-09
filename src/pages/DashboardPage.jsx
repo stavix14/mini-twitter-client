@@ -1,15 +1,22 @@
 import React from 'react';
-import { useMutation } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import TweetInputContainer from "../containers/TweetInputContainer";
-import { CREATE_NEW_TWEET } from "../api";
+import TweetDisplayContainer from "../containers/TweetDisplayContainer";
+import { CREATE_NEW_TWEET, GET_TWEETS } from "../api";
 
 const DashboardPage = props => {
-    const [createTweet, { data }] = useMutation(CREATE_NEW_TWEET);
+    const { loading, error, data, refetch } = useQuery(GET_TWEETS);
+    const [ createTweet ] = useMutation(CREATE_NEW_TWEET);
     const { username } = props.location.state;
+
+    if (loading) return <CircularProgress />;
+    if (error) return `Error! ${error.message}`;
 
     return (
         <div>
-            <TweetInputContainer submit={createTweet} username={username} />
+            <TweetInputContainer submit={createTweet} refetch={refetch} username={username} />
+            <TweetDisplayContainer tweets={data.tweets} loading={loading} error={error} />
         </div>
     );
 };

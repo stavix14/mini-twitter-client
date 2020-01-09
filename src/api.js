@@ -9,3 +9,15 @@ export const CREATE_NEW_TWEET = gql`
         }
     }
 `;
+
+export const GET_TWEETS = gql`
+    {
+        tweets {
+            id
+            username
+            message
+            date
+        }
+    }
+
+`;
