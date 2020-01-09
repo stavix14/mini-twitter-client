@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from "prop-types";
 import TweetDisplayComponent from "../components/TweetDisplayComponent";
 
 const TweetDisplayContainer = props => {
@@ -16,6 +17,10 @@ const TweetDisplayContainer = props => {
         ))}
         </div>
     );
+}
+
+TweetDisplayContainer.propTypes = {
+    tweets: PropTypes.array.isRequired
 }
 
 export default TweetDisplayContainer;

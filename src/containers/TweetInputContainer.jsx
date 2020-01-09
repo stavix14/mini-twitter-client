@@ -1,28 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import TweetInputComponent from "../components/TweetInputComponent";
 
-class TweetInputContainer extends React.Component {
-    state = {
-        text: '',
-        errors: ''
-    };
+const TweetInputContainer = props => {
+    const [text, setText] = useState('');
+    const [errors, setErrors] = useState('');
 
-    onChange = e => this.setState({text: e.target.value});
+    const onChange = e => setText(e.target.value);
 
-    onSubmit = async () => {
-        const errors = this.validate(this.state.text);
-        const postingTime = new Date();
-        console.log(postingTime.toJSON());
-
-        this.setState({ errors });
-        if (!errors) {
-             await this.props.submit({ variables: { username: this.props.username, message: this.state.text, date: postingTime } });
-        }
-        this.setState({ text: '' });
-        this.props.refetch();
-    }
-
-    validate = (text) => {
+    const validate = text => {
         let errors = '';
 
         if (text.length === 0) {
@@ -34,20 +20,35 @@ class TweetInputContainer extends React.Component {
         return errors;
     }
 
-    render() {
-        const { text, errors } = this.state;
-        return (
-            <React.Fragment>
-                <TweetInputComponent
-                    errors={errors}
-                    counter={text.length}                    
-                    text={text}
-                    onChange={this.onChange}
-                    onSubmit={this.onSubmit}
-                />
-            </React.Fragment>
-        );
+    const onSubmit = async () => {
+        const errors = validate(text);
+        const postingTime = new Date(); //have to redo the date part or to parse it differently in the display component
+
+        setErrors(errors);
+        if (!errors) {
+             await props.submit({ variables: { username: props.username, message: text, date: postingTime } });
+        }
+        setText('');
+        props.refetch();
     }
+
+    return (
+        <React.Fragment>
+            <TweetInputComponent
+                errors={errors}
+                counter={text.length}                    
+                text={text}
+                onChange={onChange}
+                onSubmit={onSubmit}
+            />
+        </React.Fragment>
+    );
 }
+
+TweetInputContainer.propTypes = {
+    username: PropTypes.string.isRequired,
+    submit: PropTypes.func.isRequired,
+    refetch: PropTypes.func.isRequired
+};
 
 export default TweetInputContainer;

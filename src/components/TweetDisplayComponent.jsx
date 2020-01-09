@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from "prop-types";
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -39,5 +40,12 @@ const TweetDisplayComponent = props => {
     </Card>
   );
 }
+
+TweetDisplayComponent.propTypes = {
+  classes: PropTypes.object.isRequired,
+  username: PropTypes.string.isRequired,
+  message: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired
+};
 
 export default withStyles(styles)(TweetDisplayComponent);

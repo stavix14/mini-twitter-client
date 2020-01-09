@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from "prop-types";
 import { useQuery, useMutation } from '@apollo/client';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import TweetInputContainer from "../containers/TweetInputContainer";
@@ -16,9 +17,15 @@ const DashboardPage = props => {
     return (
         <div>
             <TweetInputContainer submit={createTweet} refetch={refetch} username={username} />
-            <TweetDisplayContainer tweets={data.tweets} loading={loading} error={error} />
+            <TweetDisplayContainer tweets={data.tweets} />
         </div>
     );
+};
+
+DashboardPage.propTypes = {
+    location: PropTypes.shape({
+        state: PropTypes.object.isRequired
+    }).isRequired
 };
 
 export default DashboardPage;

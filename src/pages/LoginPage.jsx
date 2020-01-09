@@ -1,23 +1,28 @@
 import React from 'react';
+import PropTypes from "prop-types";
 import LoginContainer from "../containers/LoginContainer";
 
-class LoginPage extends React.Component {
+const LoginPage = props => {
 
-    submit = email =>
-        this.props.history.push({
-            pathname: "/dashboard",
-            state: {
-                username: email
-            }
-        });
+    const submit = email =>
+    props.history.push({
+        pathname: "/dashboard",
+        state: {
+            username: email
+        }
+    });
 
-    render() {
-        return (
-            <div>
-                <LoginContainer submit={this.submit} />
-            </div>
-        );
-    }
+    return (
+        <div>
+            <LoginContainer submit={submit} />
+        </div>
+    );
 };
+
+LoginPage.propTypes = {
+    history: PropTypes.shape({
+      push: PropTypes.func.isRequired
+    }).isRequired
+  };
 
 export default LoginPage;
