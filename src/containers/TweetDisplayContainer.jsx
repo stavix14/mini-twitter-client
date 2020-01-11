@@ -12,7 +12,7 @@ const TweetDisplayContainer = props => {
                 key={tweet.id}
                 username={tweet.username}
                 message={tweet.message}
-                date={tweet.date}
+                date={tweet.date.slice(0, 10)}
             />
         ))}
         </div>

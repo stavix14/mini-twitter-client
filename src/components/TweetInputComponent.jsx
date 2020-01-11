@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { Button, TextField } from '@material-ui/core';
-import { deepPurple } from '@material-ui/core/colors';
+import PurpleButton from "../components/PurpleButton";
 
 const styles = {
     wrapper: {
@@ -10,7 +10,7 @@ const styles = {
         marginTop: '2em',
         marginBottom: '5em'
     },
-    tweetTextField: {
+    tweetInputField: {
         width: '50%',
         color: 'white',
         paddingBottom: 0,
@@ -23,9 +23,7 @@ const styles = {
         position: 'relative',
         left: '20%'
     },
-    tweetButton: {
-        background: deepPurple[500],
-        color: 'white',
+    buttonWrapper: {
         display: 'inline',
     },
     chCounter: {
@@ -41,7 +39,7 @@ const TweetInputComponent = props => {
         <div className={classes.wrapper}>
             <TextField
                 id="outlined-basic"
-                className={classes.tweetTextField}
+                className={classes.tweetInputField}
                 autoComplete="off"
                 autoFocus={false}
                 error={!!props.errors}
@@ -58,7 +56,10 @@ const TweetInputComponent = props => {
             />
             <div className={classes.helperDiv}>
                 <p className={classes.chCounter}>{`${counter} / 255`}</p>
-                <Button className={classes.tweetButton} onClick={props.onSubmit}>Tweet</Button>
+                {/* <Button className={classes.tweetButton} onClick={props.onSubmit}>Tweet</Button> */}
+                <div className={classes.buttonWrapper}>
+                    <PurpleButton onClick={props.onSubmit} name="Tweet" />
+                </div>
             </div>
         </div>
     );

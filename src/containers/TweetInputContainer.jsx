@@ -22,7 +22,7 @@ const TweetInputContainer = props => {
 
     const onSubmit = async () => {
         const errors = validate(text);
-        const postingTime = new Date(); //have to redo the date part or to parse it differently in the display component
+        const postingTime = new Date();
 
         setErrors(errors);
         if (!errors) {

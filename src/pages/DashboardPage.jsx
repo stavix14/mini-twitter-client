@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import { useQuery, useMutation } from '@apollo/client';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import { CircularProgress } from '@material-ui/core';
+import PurpleButton from "../components/PurpleButton";
 import TweetInputContainer from "../containers/TweetInputContainer";
 import TweetDisplayContainer from "../containers/TweetDisplayContainer";
 import { CREATE_NEW_TWEET, GET_TWEETS } from "../api";
@@ -16,6 +17,9 @@ const DashboardPage = props => {
 
     return (
         <div>
+            <div style={{ position: "relative", left: "75%"}}>
+                <PurpleButton onClick={() => props.history.goBack()} name="Logout" />
+            </div>
             <TweetInputContainer submit={createTweet} refetch={refetch} username={username} />
             <TweetDisplayContainer tweets={data.tweets} />
         </div>
@@ -25,7 +29,10 @@ const DashboardPage = props => {
 DashboardPage.propTypes = {
     location: PropTypes.shape({
         state: PropTypes.object.isRequired
-    }).isRequired
+    }).isRequired,
+    history: PropTypes.shape({
+        goBack: PropTypes.func.isRequired
+      }).isRequired
 };
 
 export default DashboardPage;

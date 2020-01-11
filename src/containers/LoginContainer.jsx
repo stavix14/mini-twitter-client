@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Button, TextField } from '@material-ui/core';
+import LoginComponent from "../components/LoginComponent";
 
 const LoginContainer = props => {
     const [email, setEmail] = useState('');
@@ -31,19 +31,14 @@ const LoginContainer = props => {
     }
 
     return (
-        <div>
-            <TextField
-                autoFocus={true}
-                error={!!errors}
-                helperText={errors}
-                label="email"
-                name="email"
-                placeholder="example@optioffer.com"
-                value={email}
+        <React.Fragment>
+            <LoginComponent
+                errors={errors}
+                email={email}
                 onChange={onChange}
+                onSubmit={onSubmit}
             />
-            <Button onClick={onSubmit}>Login</Button>
-        </div>
+        </React.Fragment>
     );
 }
 
